@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-and-smoke:
+    name: Lint scripts & smoke-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bash syntax check
+        run: bash -n loop-engineer/scripts/*.sh
+
+      - name: ShellCheck
+        run: shellcheck loop-engineer/scripts/*.sh
+
+      - name: scan-harness emits valid JSON
+        run: |
+          ./loop-engineer/scripts/scan-harness.sh --project-dir . > /tmp/scan.json
+          python3 -c "import json; d=json.load(open('/tmp/scan.json')); assert all(k in d for k in ('skills','agents','mcp','hooks','gitWorktreeCapable')), d; print('scan keys ok')"
+
+      - name: init-memory scaffolds and is idempotent
+        run: |
+          ./loop-engineer/scripts/init-memory.sh --topic ci-smoke --project-dir /tmp/leci > /tmp/m1.json
+          test -f /tmp/leci/docs/loops-engineering/memory/ci-smoke/run-log.md
+          test -f /tmp/leci/docs/loops-engineering/memory/ci-smoke/budget.md
+          python3 -c "import json; json.load(open('/tmp/m1.json'))"
+          # second run must not error (empty created array path)
+          ./loop-engineer/scripts/init-memory.sh --topic ci-smoke --project-dir /tmp/leci > /tmp/m2.json
+          python3 -c "import json; d=json.load(open('/tmp/m2.json')); assert d['created']==[], d"
+          echo "init-memory ok"

@@ -31,7 +31,7 @@ if git -C "$PROJECT_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   GIT_CAPABLE="true"
 fi
 
-HOME_DIR="${HOME:-$HOME}"
+HOME_DIR="$HOME"
 
 # All scanning + JSON emission happens in python3 for safe escaping.
 PROJECT_DIR="$PROJECT_DIR" HOME_DIR="$HOME_DIR" GIT_CAPABLE="$GIT_CAPABLE" python3 <<'PY'

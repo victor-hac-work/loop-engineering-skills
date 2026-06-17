@@ -64,13 +64,23 @@ EOF
   CREATED+=("$BUDGET")
 fi
 
+# Safe empty-array expansion (macOS bash 3.2 + set -u).
+if [[ ${#CREATED[@]} -gt 0 ]]; then
+  CREATED_LIST=("${CREATED[@]}")
+else
+  CREATED_LIST=()
+fi
+
 # JSON output (python3 for safe escaping; fall back to plain if absent)
 if command -v python3 >/dev/null 2>&1; then
-  MEM_DIR="$MEM_DIR" python3 - "${CREATED[@]}" <<'PY'
+  MEM_DIR="$MEM_DIR" python3 - ${CREATED_LIST[@]+"${CREATED_LIST[@]}"} <<'PY'
 import os, sys, json
 print(json.dumps({"memoryDir": os.environ["MEM_DIR"], "created": sys.argv[1:]}, indent=2))
 PY
 else
-  printf '{"memoryDir": "%s", "created": [%s]}\n' "$MEM_DIR" \
-    "$(printf '"%s",' "${CREATED[@]}" | sed 's/,$//')"
+  joined=""
+  if [[ ${#CREATED_LIST[@]} -gt 0 ]]; then
+    joined="$(printf '"%s",' "${CREATED_LIST[@]}" | sed 's/,$//')"
+  fi
+  printf '{"memoryDir": "%s", "created": [%s]}\n' "$MEM_DIR" "$joined"
 fi

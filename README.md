@@ -1,10 +1,17 @@
 <div align="center">
 
+<img src="assets/banner.png" alt="loop-engineer — Stop prompting. Design the loop." width="100%">
+
 # 🔁 loop-engineer
 
 ### A Claude Code skill that turns a rough idea into a production-grade agent **loop** — classified, scoped, memory-backed, and ready to run.
 
 *Stop writing prompts. Start designing the system that writes them for you.*
+
+[![CI](https://github.com/victor-hac-work/loop-engineering-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/victor-hac-work/loop-engineering-skills/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-56e1c4.svg)](./LICENSE)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-skill-7c9cff.svg)](https://claude.com/claude-code)
+![Shell + Python](https://img.shields.io/badge/bash%20%2B%20python3-required-8a99b8.svg)
 
 </div>
 
