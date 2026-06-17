@@ -140,6 +140,64 @@ Then you run it — `/loop <prompt>` or `/schedule`.
 
 ---
 
+## 📖 Worked example — "keep the backend tests green"
+
+A full run, start to finish.
+
+**1. You ask:**
+
+```text
+Use loop-engineering to design a loop that keeps my backend test suite green.
+```
+
+**2. The skill scans + classifies.** It runs `scan-harness.sh`, sees your test command and
+`code-reviewer` sub-agent, and classifies this as **deterministic** (a real pass/fail
+check exists).
+
+**3. It asks only the gaps** (one at a time):
+
+- *Env?* → isolated **worktree** (safe — it'll be editing code).
+- *Checker?* → reuse your **`code-reviewer`** sub-agent as the verifier.
+- *Guardrails?* → "never touch `migrations/`, never `git push`." *(or skip)*
+- *Schedule?* → skip → **run to goal**.
+
+**4. It derives memory** and scaffolds:
+
+```text
+docs/loops-engineering/memory/keep-tests-green/
+  run-log.md        # generic audit + cost
+  budget.md         # max iterations
+  STATE.md          # ← derived: failing suites + last fix attempted
+```
+
+**5. It writes the design doc, self-reviews, and presents.** You approve.
+
+**6. It emits the ready-to-run prompt:**
+
+```text
+Start "keep-tests-green" loop. Type: deterministic. Goal: full backend test suite passes.
+Env: worktree.
+Memory: read docs/loops-engineering/memory/keep-tests-green/STATE.md before each pass; update after.
+Max iterations: 10. Budget: see budget.md.
+Each pass: 1) read STATE.md + run `npm test`  2) decide next fix  3) implement
+4) verify via code-reviewer sub-agent + re-run tests  5) update STATE.md + run-log.md.
+Exit when: test suite exits 0. On tool failure: record in STATE.md and retry once.
+Guardrails — NEVER: edit migrations/, run git push. If a step would cross one, stop and escalate.
+Human gate: escalate risky changes with full context. Safety level: L2 assisted.
+Give a short status update each pass.
+```
+
+**7. You run it:**
+
+```text
+/loop <paste the prompt>
+```
+
+Same flow, different goal: *"triage new GitHub issues every morning"* → **non-deterministic**,
+**AI-as-judge** gate, **scheduled** (`/schedule`), memory tracks already-triaged issue IDs.
+
+---
+
 ## 🗂 Repo layout
 
 ```
