@@ -81,17 +81,36 @@ A loop template gives you a skeleton. `loop-engineer` gives you a **designed loo
 
 ## 📦 Install
 
-Clone and symlink the skill into your Claude Code skills directory:
+### Quick install (Claude Code plugin marketplace) — recommended
+
+Inside Claude Code, run:
+
+```text
+/plugin marketplace add victor-hac-work/loop-engineering-skills
+/plugin install loop-engineer@loop-engineering-skills
+```
+
+That's it. The skill is model-invoked — Claude uses it automatically when you describe a
+loop — or call it explicitly with `/loop-engineer:loop-engineer`.
+
+To update later:
+
+```text
+/plugin marketplace update loop-engineering-skills
+```
+
+### Manual install (symlink into your skills dir)
 
 ```bash
 git clone https://github.com/victor-hac-work/loop-engineering-skills.git
-ln -s "$(pwd)/loop-engineering-skills/loop-engineer" ~/.claude/skills/loop-engineer
+ln -s "$(pwd)/loop-engineering-skills/skills/loop-engineer" ~/.claude/skills/loop-engineer
 ```
 
-Or copy it in:
+### Try before installing
 
 ```bash
-cp -R loop-engineering-skills/loop-engineer ~/.claude/skills/loop-engineer
+git clone https://github.com/victor-hac-work/loop-engineering-skills.git
+claude --plugin-dir ./loop-engineering-skills
 ```
 
 Requires: Claude Code, `bash`, `python3`, and (for the worktree option) `git`.
@@ -124,14 +143,17 @@ Then you run it — `/loop <prompt>` or `/schedule`.
 ## 🗂 Repo layout
 
 ```
-loop-engineer/
-  SKILL.md                          # the dialogue flow + hard gate + checklist
-  scripts/scan-harness.sh           # JSON: { skills, agents, mcp, hooks, gitWorktreeCapable }
-  scripts/init-memory.sh            # scaffolds docs/loops-engineering/memory/<topic>/
-  reference/loop-patterns.md        # the full model: blocks, 5-step, 7 things, rubric, skeleton
-  reference/loop-design-reviewer.md # loop-tuned self-review subagent prompt
-docs/
-  design-spec.md                    # the design spec behind the skill
+.claude-plugin/
+  marketplace.json                    # marketplace catalog (this repo)
+  plugin.json                         # the loop-engineer plugin manifest
+skills/loop-engineer/
+  SKILL.md                            # the dialogue flow + hard gate + checklist
+  scripts/scan-harness.sh             # JSON: { skills, agents, mcp, hooks, gitWorktreeCapable }
+  scripts/init-memory.sh              # scaffolds docs/loops-engineering/memory/<topic>/
+  reference/loop-patterns.md          # the full model: blocks, 5-step, 7 things, rubric, skeleton
+  reference/loop-design-reviewer.md   # loop-tuned self-review subagent prompt
+assets/banner.svg|png                 # README banner / social preview
+docs/design-spec.md                   # the design spec behind the skill
 ```
 
 ---

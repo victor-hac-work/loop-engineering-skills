@@ -1,0 +1,27 @@
+{
+  "name": "loop-engineering-skills",
+  "description": "Loop engineering for Claude Code — skills that turn an idea into a production-grade, memory-backed agent loop.",
+  "owner": {
+    "name": "Victor Hac",
+    "url": "https://github.com/victor-hac-work"
+  },
+  "plugins": [
+    {
+      "name": "loop-engineer",
+      "source": ".",
+      "description": "Turn an idea into a production-grade, memory-backed agent loop — classify, scope, derive state, emit a /loop-ready prompt. Stop prompting; design the loop.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Victor Hac"
+      },
+      "homepage": "https://github.com/victor-hac-work/loop-engineering-skills",
+      "license": "MIT",
+      "keywords": [
+        "loop-engineering",
+        "claude-code",
+        "ai-agents",
+        "automation"
+      ]
+    }
+  ]
+}
