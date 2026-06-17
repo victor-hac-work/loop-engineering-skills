@@ -1,5 +1,5 @@
 ---
-name: loop-engineer
+name: loop-engineering
 description: "Help the user turn a rough idea into a full-context, detailed loop-engineering prompt and goal. Classifies the loop, walks the building blocks, scaffolds durable memory, and emits a ready-to-run prompt for /loop. Use when the user wants to design a loop, build an autonomous/self-running agent loop, automate a recurring task as a loop, or says 'loop engineering' / 'design a loop' / 'make this a loop'."
 ---
 

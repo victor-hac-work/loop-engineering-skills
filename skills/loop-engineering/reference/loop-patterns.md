@@ -1,6 +1,6 @@
 # Loop patterns — reference
 
-Everything the dialogue needs to reason about. Load this when running `loop-engineer`.
+Everything the dialogue needs to reason about. Load this when running `loop-engineering`.
 
 ---
 

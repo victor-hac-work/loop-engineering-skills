@@ -1,5 +1,5 @@
 {
-  "name": "loop-engineer",
+  "name": "loop-engineering",
   "description": "Design production-grade, memory-backed agent loops. Classify deterministic vs non-deterministic, scan your harness (skills/agents/MCP/hooks), derive durable state from the goal, separate done-gates from guardrails, and emit a /loop-ready prompt behind a human approval gate.",
   "version": "1.0.0",
   "author": {

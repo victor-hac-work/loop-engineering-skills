@@ -7,7 +7,7 @@
   },
   "plugins": [
     {
-      "name": "loop-engineer",
+      "name": "loop-engineering",
       "source": ".",
       "description": "Turn an idea into a production-grade, memory-backed agent loop — classify, scope, derive state, emit a /loop-ready prompt. Stop prompting; design the loop.",
       "version": "1.0.0",

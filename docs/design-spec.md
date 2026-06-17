@@ -1,4 +1,4 @@
-# loop-engineer skill — design spec
+# loop-engineering skill — design spec
 
 **Date:** 2026-06-17
 **Status:** Approved (design phase)
@@ -18,7 +18,7 @@ The skill does NOT execute the loop. It produces:
 
 Human oversight stays foundational — the skill stops at an approval gate before any run.
 
-**Location:** `~/.claude/skills/loop-engineer/` (global, project-agnostic).
+**Location:** `~/.claude/skills/loop-engineering/` (global, project-agnostic).
 
 ---
 
@@ -68,7 +68,7 @@ termination condition, error handling, state across turns, cost/token budget.
 | 2 | Classification | **AI defines** deterministic vs non-deterministic. Non-det → ask the goal; if no measurable check → use **AI-as-judge** as the verification gate. |
 | 3 | Harness scan | Collect **skills + MCP + hooks** (and git/worktree feasibility). JSON stdout. |
 | 4 | 7-things walkthrough | **Smart gap-only** — prefill defaults from idea + scan, ask only what can't be inferred. |
-| 5 | Placement / name | Global `~/.claude/skills/loop-engineer/`. |
+| 5 | Placement / name | Global `~/.claude/skills/loop-engineering/`. |
 | 6 | Env (worktree) | **Ask the user**: isolated git worktree, or current dir. |
 | 7 | Memory | **AI critiques the goal and derives the minimal durable state** for that goal. NOT a fixed template. |
 | 8 | Guardrails | After the 7 things, **ask the user for restrictions the loop must never cross** (forbidden paths/commands/actions). **Skippable.** |
@@ -102,7 +102,7 @@ in a browser — **not needed** for a text/terminal skill. Reuse three things:
 ## 5. File layout
 
 ```
-~/.claude/skills/loop-engineer/
+~/.claude/skills/loop-engineering/
   SKILL.md                          # dialogue flow + HARD-GATE (no run until approved)
   scripts/scan-harness.sh           # JSON: { skills[], agents[], mcp[], hooks[], gitWorktreeCapable }
   scripts/init-memory.sh            # scaffold docs/loops-engineering/memory/<topic>/ (generic files only)

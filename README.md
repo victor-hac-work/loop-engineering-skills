@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/banner.png" alt="loop-engineer — Stop prompting. Design the loop." width="100%">
+<img src="assets/banner.png" alt="loop-engineering — Stop prompting. Design the loop." width="100%">
 
-# 🔁 loop-engineer
+# 🔁 loop-engineering
 
 ### A Claude Code skill that turns a rough idea into a production-grade agent **loop** — classified, scoped, memory-backed, and ready to run.
 
@@ -24,7 +24,7 @@ That sentence is a paradigm shift. Prompt engineering was about crafting the per
 
 The hard part isn't the loop. It's getting the **context, feedback, verification, termination, error handling, state, and budget** right — and giving the agent a **durable memory** that survives a context reset.
 
-**`loop-engineer` is the skill that designs that for you.** You bring an idea; it interviews you, scans your harness, derives the right state, and emits a ready-to-run loop.
+**`loop-engineering` is the skill that designs that for you.** You bring an idea; it interviews you, scans your harness, derives the right state, and emits a ready-to-run loop.
 
 ---
 
@@ -61,13 +61,13 @@ Loop engineering, distilled from [Boris Cherny](https://thenewstack.io/loop-engi
 ### The 7 things to get right
 context management · feedback quality · verification gates · termination condition · error handling · state across turns · cost / token budget
 
-`loop-engineer` makes a real decision for **each** of these — instead of leaving them implicit.
+`loop-engineering` makes a real decision for **each** of these — instead of leaving them implicit.
 
 ---
 
 ## 🚀 Why this skill (and not a prompt template)
 
-A loop template gives you a skeleton. `loop-engineer` gives you a **designed loop**:
+A loop template gives you a skeleton. `loop-engineering` gives you a **designed loop**:
 
 - **It classifies first.** Deterministic (tests/build/lint exit 0) vs non-deterministic (fuzzy goal → it asks for the goal, and wires an **AI-as-judge** gate when no measurable check exists).
 - **It scans your actual harness.** A bundled script discovers your installed **skills, sub-agents, MCP servers, and hooks** — so the design references tools you really have, not placeholders.
@@ -87,11 +87,11 @@ Inside Claude Code, run:
 
 ```text
 /plugin marketplace add victor-hac-work/loop-engineering-skills
-/plugin install loop-engineer@loop-engineering-skills
+/plugin install loop-engineering@loop-engineering-skills
 ```
 
 That's it. The skill is model-invoked — Claude uses it automatically when you describe a
-loop — or call it explicitly with `/loop-engineer:loop-engineer`.
+loop — or call it explicitly with `/loop-engineering:loop-engineering`.
 
 To update later:
 
@@ -103,7 +103,7 @@ To update later:
 
 ```bash
 git clone https://github.com/victor-hac-work/loop-engineering-skills.git
-ln -s "$(pwd)/loop-engineering-skills/skills/loop-engineer" ~/.claude/skills/loop-engineer
+ln -s "$(pwd)/loop-engineering-skills/skills/loop-engineering" ~/.claude/skills/loop-engineering
 ```
 
 ### Try before installing
@@ -122,7 +122,7 @@ Requires: Claude Code, `bash`, `python3`, and (for the worktree option) `git`.
 In Claude Code, just describe the loop you want:
 
 ```
-Use loop-engineer to design a loop that keeps the backend test suite green.
+Use loop-engineering to design a loop that keeps the backend test suite green.
 ```
 
 The skill will:
@@ -145,8 +145,8 @@ Then you run it — `/loop <prompt>` or `/schedule`.
 ```
 .claude-plugin/
   marketplace.json                    # marketplace catalog (this repo)
-  plugin.json                         # the loop-engineer plugin manifest
-skills/loop-engineer/
+  plugin.json                         # the loop-engineering plugin manifest
+skills/loop-engineering/
   SKILL.md                            # the dialogue flow + hard gate + checklist
   scripts/scan-harness.sh             # JSON: { skills, agents, mcp, hooks, gitWorktreeCapable }
   scripts/init-memory.sh              # scaffolds docs/loops-engineering/memory/<topic>/
