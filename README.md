@@ -174,6 +174,10 @@ Issues and PRs welcome — new loop patterns, harness-scan improvements, and rev
 heuristics especially. Keep the **hard gate** intact: the skill designs loops; humans
 decide when they run.
 
+## 📝 Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md).
+
 ## 📄 License
 
 [MIT](./LICENSE)

@@ -1,0 +1,34 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Validate version & publish release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tag must match plugin.json version
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PV="$(python3 -c "import json; print(json.load(open('.claude-plugin/plugin.json'))['version'])")"
+          MV="$(python3 -c "import json; print(json.load(open('.claude-plugin/marketplace.json'))['plugins'][0]['version'])")"
+          echo "tag=$TAG plugin.json=$PV marketplace.json=$MV"
+          test "$TAG" = "$PV" || { echo "::error::tag v$TAG != plugin.json version $PV"; exit 1; }
+          test "$TAG" = "$MV" || { echo "::error::tag v$TAG != marketplace.json version $MV"; exit 1; }
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "$GITHUB_REF_NAME" \
+            --notes "See [CHANGELOG.md](https://github.com/${GITHUB_REPOSITORY}/blob/main/CHANGELOG.md) for details." \
+            --verify-tag
